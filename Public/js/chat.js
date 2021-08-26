@@ -1,0 +1,62 @@
+const chatForm = document.getElementById('chatForm');
+const messageSubmit = document.getElementById('msg');
+const chatmessage = document.querySelector('.msg_history');
+// const messageFormatter = require('../../Util/messages')
+const userName = document.getElementById('username1').innerText;
+const roomNumber = document.getElementById('room1').innerText;
+const socket = io();
+
+//Join ChatRoom
+socket.emit('joinRoom',{userName,roomNumber});
+console.log(userName,roomNumber);
+
+//Message from server
+socket.on('message', message => {
+    console.log(message);
+    outputMessage(message);
+    chatmessage.scrollTop = chatmessage.scrollHeight;
+})
+
+//message submit
+chatForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const message = messageSubmit.value;
+    //emit message to server by socket
+    socket.emit('chatMessage', message);
+    //clear input
+    messageSubmit.value ='';
+    messageSubmit.focus();
+});
+
+// Get room and users
+socket.on('roomUsers', ({ room, users }) => {
+    outputRoomName(room);
+    outputUsers(users);
+});
+
+//send message to DOM
+function outputMessage(message) {
+    const div = document.createElement('div');
+    div.classList.add('received_withd_msg');
+    div.innerHTML = `<h4>${message.username}</h4>
+                      <p>${message.text}</p>
+                      <span class="time_date">${message.time}</span>`
+    document.querySelector('.msg_history').appendChild(div);
+}
+
+// Add room name to DOM
+function outputRoomName(room) {
+    const roomName = document.getElementById('roomName2')
+    roomName.innerText = room;
+}
+
+// Add users to DOM
+function outputUsers(users) {
+    const usersList = document.getElementById('users');
+    usersList.innerHTML = '';
+    users.forEach((user) => {
+        const li = document.createElement('li');
+        li.innerText = user.username;
+        usersList.appendChild(li);
+    });
+}
