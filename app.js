@@ -7,7 +7,7 @@ const socketIO = require('socket.io');
 const {userJoin, getCurrentUser, userLeave, getRoomUsers} = require('./Util/users');
 const formatMessage = require('./Util/messages');
 const io = socketIO(server);
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const BotName = "Server";
 const chatRoute = require('./Route/chatRoute');
 app.use('/', chatRoute);
@@ -18,23 +18,27 @@ app.set("views", "View");
 app.use(express.static(path.join(__dirname, 'public')))
 
 io.on('connection', socket => {
-    socket.on('joinRoom', ({userName, room}) => {
-        console.log(`new client name: ${userName} room:${room} connected`);
-        const user = userJoin(socket.id, userName, room);
-        socket.join(user.room);
-        //run when new client conected
-        socket.emit('message', formatMessage(BotName, `${user.username} connected`))
-        //broadcast when a user connect
-        socket.broadcast
-            .to(user.room)
-            .emit('message', formatMessage(BotName, `${userName} has join the chat !!`))
+    socket.on('sendRoomNo', roomNumber12 => {
+        const roomReal = roomNumber12;
+        socket.on('joinRoom', userName => {
+            console.log(`new client name: ${userName} room:${roomReal} connected`);
+            const user = userJoin(socket.id, userName, roomReal);
+            socket.join(user.room);
+            //run when new client conected
+            socket.emit('message', formatMessage(BotName, `${user.username} connected`))
+            //broadcast when a user connect
+            socket.broadcast
+                .to(user.room)
+                .emit('message', formatMessage(BotName, `${userName} has join the chat !!`))
 
-        //send user info to room
-        io.to(user.room).emit('roomUsers', {
-            room: user.room,
-            users: getRoomUsers(user.room)
+            //send user info to room
+            io.to(user.room).emit('roomUsers', {
+                room: user.room,
+                users: getRoomUsers(user.room)
+            })
         })
     })
+
 
     //listent chatMessage from client
     socket.on('chatMessage', message => {
@@ -53,5 +57,5 @@ io.on('connection', socket => {
 })
 
 server.listen(PORT, () => {
-    console.log(`listening on port ${PORT}: http://localhost:${PORT}`)
+    console.log(`Server now online, listening on port ${PORT}: http://localhost:${PORT}`)
 })

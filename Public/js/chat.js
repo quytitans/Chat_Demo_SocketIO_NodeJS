@@ -7,8 +7,8 @@ const roomNumber = document.getElementById('room1').innerText;
 const socket = io();
 
 //Join ChatRoom
-socket.emit('joinRoom',{userName,roomNumber});
-console.log(userName,roomNumber);
+socket.emit('sendRoomNo',roomNumber)
+socket.emit('joinRoom',userName);
 
 //Message from server
 socket.on('message', message => {
@@ -37,7 +37,13 @@ socket.on('roomUsers', ({ room, users }) => {
 //send message to DOM
 function outputMessage(message) {
     const div = document.createElement('div');
-    div.classList.add('received_withd_msg');
+    if (message.username === 'Server') {
+        div.classList.add('server_received_withd_msg');
+    }else if (message.username === userName){
+        div.classList.add('your_received_withd_msg');
+    }else {
+        div.classList.add('received_withd_msg');
+    }
     div.innerHTML = `<h4>${message.username}</h4>
                       <p>${message.text}</p>
                       <span class="time_date">${message.time}</span>`
