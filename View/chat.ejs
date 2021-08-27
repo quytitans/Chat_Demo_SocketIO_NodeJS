@@ -30,6 +30,7 @@
                             <h4 id="roomName2"></h4>
                         </div>
                     </div>
+                    <input class="btn-danger mt-2" type="button" value="Leave Room" name="Leave Room" id="leaveRoom">
                 </div>
                 <div class="inbox_chat">
                     <ul id="users"></ul>
@@ -40,7 +41,7 @@
                     <div class="msg_history"></div>
                     <div class="type_msg">
                         <div class="input_msg_write">
-                            <input id="msg" type="text" class="write_msg" placeholder="Type a message"/>
+                            <input id="msg" name="msg" type="text" class="write_msg" placeholder="Type a message"/>
                             <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
                                                                           aria-hidden="true"></i></button>
                         </div>
@@ -54,6 +55,9 @@
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="JquerryBootstrap/jquery-3.6.0.js"></script>
+<script src="JquerryBootstrap/bootstrap.js"></script>
+<script src="JquerryBootstrap/jquery.validate.js"></script>
 <script src="js/chat.js"></script>
 </body>
 </html>
