@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -15,7 +14,7 @@ const indexRoute = require('./Route/indexRoute');
 app.use('/', indexRoute);
 app.set("view engine", "ejs");
 app.set("views", "View");
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'))
 
 io.on('connection', socket => {
     socket.on('sendRoomNo', roomNumber12 => {
