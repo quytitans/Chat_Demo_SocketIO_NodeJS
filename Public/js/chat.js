@@ -86,7 +86,7 @@ $().ready(function () {
     document.getElementById('leaveRoom').addEventListener('click', () => {
         const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
         if (leaveRoom) {
-            window.location = 'http://localhost:3000/index';
+            window.location = 'https://chat-quybattousai.herokuapp.com/index';
         } else {
         }
     });
