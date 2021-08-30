@@ -5,7 +5,8 @@
 <html>
 <head>
     <title>Titans Chat</title>
-    <link rel='shortcut icon' type='image/x-icon' href='https://res.cloudinary.com/quynv300192/image/upload/v1629967590/PROJECT%20KI%201/Screenshot_12_osg2wz.jpg' />
+    <link rel='shortcut icon' type='image/x-icon'
+          href='https://res.cloudinary.com/quynv300192/image/upload/v1629967590/PROJECT%20KI%201/Screenshot_12_osg2wz.jpg'/>
     <link rel="stylesheet" href="css/chat.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet"/>
@@ -19,33 +20,42 @@
     <h3 class=" text-center color1">Titans Chat</h3>
     <div class="messaging">
         <div class="inbox_msg">
-            <div class="inbox_people">
-                <div class="headind_srch">
-                    <div class="recent_heading">
-                        <h4>Room: </h4>
-                    </div>
-                    <div class="srch_bar">
-                        <div class="recent_heading">
-                            <h4 id="roomName2"></h4>
+            <div class="row">
+                <div class="inbox_people col-12 col-md-3">
+                    <div class="row">
+                        <div class="headind_srch col-12 col-md-12">
+                            <div class="row">
+                                <div class="recent_heading col-4 col-md-6">
+                                    <h4 class="text-right">Room: </h4>
+                                </div>
+                                <div class="srch_bar col-4 col-md-6">
+                                    <div class="recent_heading">
+                                        <h4 id="roomName2" class="text-left"></h4>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-12">
+                                    <input class="btn-danger mt-2" type="button" value="Leave Room" name="Leave Room"
+                                           id="leaveRoom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inbox_chat col-12 col-md-12">
+                            <ul id="users"></ul>
                         </div>
                     </div>
-                    <input class="btn-danger mt-2" type="button" value="Leave Room" name="Leave Room" id="leaveRoom">
                 </div>
-                <div class="inbox_chat">
-                    <ul id="users"></ul>
-                </div>
-            </div>
-            <div class="mesgs">
-                <form action="#" id="chatForm">
-                    <div class="msg_history"></div>
-                    <div class="type_msg">
-                        <div class="input_msg_write">
-                            <input id="msg" name="msg" type="text" class="write_msg" placeholder="Type a message"/>
-                            <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
-                                                                          aria-hidden="true"></i></button>
+                <div class="mesgs col-12 col-md-9">
+                    <form action="#" id="chatForm">
+                        <div class="msg_history"></div>
+                        <div class="type_msg">
+                            <div class="input_msg_write">
+                                <input id="msg" name="msg" type="text" class="write_msg" placeholder="Type a message"/>
+                                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
+                                                                              aria-hidden="true"></i></button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
