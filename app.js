@@ -15,7 +15,7 @@ const indexRoute = require('./Route/indexRoute');
 app.use('/', indexRoute);
 app.set("view engine", "ejs");
 app.set("views", "View");
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'Public')))
 
 io.on('connection', socket => {
     socket.on('sendRoomNo', roomNumber12 => {
