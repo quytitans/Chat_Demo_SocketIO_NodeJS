@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "QuyNguyen",
   "license": "ISC",
-  "description": "",
+  "description": "hello",
   "dependencies": {
     "body-parse": "^0.1.0",
     "body-parser": "^1.19.0",
@@ -19,5 +20,14 @@
     "moment": "^2.29.1",
     "nodemon": "^2.0.12",
     "socket.io": "^4.1.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quytitans/Chat_Demo_SocketIO_NodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/quytitans/Chat_Demo_SocketIO_NodeJS/issues"
+  },
+  "homepage": "https://github.com/quytitans/Chat_Demo_SocketIO_NodeJS#readme"
 }
